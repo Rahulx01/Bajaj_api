@@ -12,23 +12,30 @@ app.get("/", (req, res) => {
 });
 
 app.post("/bhlf", (req, res) => {
-  const data = req.body.res;
-  const odN = [];
-  const evn = [];
-  const alph = [];
-  for (let i = 0; i < data.length; i++) {
-    if (data[i] % 2 === 0) {
-      evn.push(data[i]);
+  const {data} = req.body.res;
+  const alphabets = [];
+  const even_numbers = [];
+  const odd_numbers = [];
+
+  for (const char of data) {
+    if (char.length === 1 && char.match(/[a-z]/i)) {
+      alphabets.push(char.toUpperCase());
     } else {
-      odN.push(data[i]);
+      const number = parseInt(char, 10);
+      if (!isNaN(number)) { 
+        if (number % 2 === 0) {
+          even_numbers.push(number);
+        } else {
+          odd_numbers.push(number);
+        }
+      }
     }
-    alph.push(String.fromCharCode(data[i]));
   }
   const response = {
     is_success: true,
-    user_id: "john_doe_17091999",
-    email: "john@xyz.com",
-    roll_number: "ABCD123",
+    user_id: "rahul_goyal_01092003",
+    email: "rahul1120.be21@chitkara.edu.in",
+    roll_number: "2110991120",
     odd_numbers: [],
     even_numbers: [],
     alphabets: [],
@@ -37,9 +44,8 @@ app.post("/bhlf", (req, res) => {
   res.status(200).json(response);
 });
 
-// const dataa = ["a", "1", "334", "4", "R"];
-// console.log(dataa[0] + 1);
-
 app.listen(PORT, () => {
   console.log(`server is running on port ${PORT}`);
 });
+
+export default app;
