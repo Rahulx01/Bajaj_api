@@ -11,7 +11,7 @@ app.get("/", (req, res) => {
   res.send("Hello World");
 });
 
-app.post("/bhlf", (req, res) => {
+app.post("/bfhl", (req, res) => {
   const {data} = req.body.res;
   const alphabets = [];
   const even_numbers = [];
